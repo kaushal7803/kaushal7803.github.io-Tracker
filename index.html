@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vehicle Distance Tracker</title>
 <style>
-    body {
+   body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -37,6 +37,7 @@ h1 {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
+    margin: 5px;
 }
 
 .start {
@@ -46,6 +47,11 @@ h1 {
 
 .stop {
     background-color: #f44336;
+    color: #fff;
+}
+
+.reset {
+    background-color: #ff9800;
     color: #fff;
 }
 
@@ -65,6 +71,7 @@ h1 {
     color: #4caf50;
 }
 
+
 </style>
 </head>
 <body>
@@ -73,10 +80,11 @@ h1 {
         <div class="controls">
             <button id="startTracking" class="btn start">Start Tracking</button>
             <button id="stopTracking" class="btn stop" disabled>Stop Tracking</button>
+            <button id="resetTracking" class="btn reset">Reset</button>
         </div>
         <div class="distance">
             <h2>Total Distance Traveled:</h2>
-            <p id="totalDistance">0 km</p>
+            <p id="totalDistance">0 meters</p>
         </div>
     </div>
 
