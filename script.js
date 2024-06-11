@@ -1,6 +1,7 @@
 let watchId;
 let totalDistance = 0;
 let lastPosition = null;
+const distanceThreshold = 5; // Ignore movements less than 5 meters
 
 // Load total distance from localStorage
 if (localStorage.getItem('totalDistance')) {
@@ -36,24 +37,31 @@ function updatePosition(position) {
         longitude: position.coords.longitude,
     };
 
+    console.log('Current Position:', currentPosition);
+
     if (lastPosition) {
         const distance = calculateDistance(lastPosition, currentPosition);
-        totalDistance += distance;
-        updateTotalDistanceDisplay();
+        if (distance >= distanceThreshold) {
+            totalDistance += distance;
+            updateTotalDistanceDisplay();
 
-        // Save the total distance to localStorage
-        localStorage.setItem('totalDistance', totalDistance);
+            // Save the total distance to localStorage
+            localStorage.setItem('totalDistance', totalDistance);
+            lastPosition = currentPosition;
+        } else {
+            console.log('Ignored small movement:', distance, 'meters');
+        }
+    } else {
+        lastPosition = currentPosition;
     }
-
-    lastPosition = currentPosition;
 }
 
 function updateTotalDistanceDisplay() {
     let displayDistance;
-    if (totalDistance < 1) {
-        displayDistance = (totalDistance * 1000).toFixed(0) + ' meters';
+    if (totalDistance < 1000) {
+        displayDistance = totalDistance.toFixed(0) + ' meters';
     } else {
-        displayDistance = totalDistance.toFixed(2) + ' km';
+        displayDistance = (totalDistance / 1000).toFixed(2) + ' km';
     }
     document.getElementById('totalDistance').innerText = displayDistance;
 }
@@ -80,4 +88,11 @@ document.getElementById('stopTracking').addEventListener('click', () => {
         document.getElementById('startTracking').removeAttribute('disabled');
         document.getElementById('stopTracking').setAttribute('disabled', 'disabled');
     }
+});
+
+document.getElementById('resetTracking').addEventListener('click', () => {
+    totalDistance = 0;
+    lastPosition = null;
+    localStorage.removeItem('totalDistance');
+    updateTotalDistanceDisplay();
 });
