@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Distance Tracker</title>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.start {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.stop {
+    background-color: #f44336;
+    color: #fff;
+}
+
+.distance {
+    border-top: 2px solid #ccc;
+    padding-top: 20px;
+}
+
+.distance h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.distance p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4caf50;
+}
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vehicle Distance Tracker</h1>
+        <div class="controls">
+            <button id="startTracking" class="btn start">Start Tracking</button>
+            <button id="stopTracking" class="btn stop" disabled>Stop Tracking</button>
+        </div>
+        <div class="distance">
+            <h2>Total Distance Traveled:</h2>
+            <p id="totalDistance">0 km</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
